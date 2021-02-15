@@ -30,12 +30,12 @@ namespace BookListMVC.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return Content("id=" + id);
         }
 
-        public ActionResult Index(int? pageIndex, string sortBy)
+        public IActionResult Index(int? pageIndex, string sortBy)
         {
             if (!pageIndex.HasValue)
                 pageIndex = 1;
@@ -47,7 +47,7 @@ namespace BookListMVC.Controllers
         }
 
         [Route("movies/released/{{year:regex(\\d{4})}}/{{month:regex(\\d{2}):range(1, 12)}}")]
-        public ActionResult ByReleaseYear(int year, int month)
+        public IActionResult ByReleaseYear(int year, int month)
         {
             return Content(year + " / " + month);
         }
