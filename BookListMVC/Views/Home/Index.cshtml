@@ -1,8 +1,74 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    string[] TableHeaders = new string[] { "Nume", "Autor", "ISBN" };
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container row p-0 m-0">
+    <div class="col-12">
+        <h2 class="text-info">Book List</h2>
+    </div>
+    <div class="col-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    @foreach (var head in TableHeaders)
+                    {
+                        <th>@head</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+            @{
+                var i = 0;
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        if (i < 5)
+                        {
+                <tr>
+                    <td>@Data.Name</td>
+                    <td>@Data.Author</td>
+                    <td>@Data.ISBN</td>
+                </tr>
+                            i++;
+                        }
+                    }
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12">
+        <div class="row d-flex">
+            @{
+                var j = 0;
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        if (j < 5)
+                        {
+                <div class="col-4 mb-3 text-center">
+                    <div class="p-3 border h-100 d-flex align-items-center">
+                        <div class="w-100">
+                        @if (@Data.Name != "") {
+                            <div><b class="text-success">@TableHeaders[0]</b> @Data.Name</div>
+                        }
+                        @if (@Data.Author != "") {
+                            <div><b class="text-success">@TableHeaders[1]</b> @Data.Author</div>
+                        }
+                        @if (@Data.ISBN != "") {
+                            <div><b class="text-success">@TableHeaders[2]</b> @Data.ISBN</div>
+                        }
+                        </div>
+                    </div>
+                </div>
+                            j++;
+                        }
+                    }
+                }
+            }
+        </div>
+    </div>
 </div>
